@@ -6,8 +6,6 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Clear any auth tokens or session data here if needed
-     // redirect to login page
     localStorage.removeItem('token'); // Clear token
     navigate('/');
   };
@@ -16,25 +14,25 @@ const Navbar = () => {
     <nav className="w-full bg-white shadow-md py-3 px-6 flex items-center justify-between">
       <div className="flex items-center text-black">
         <img src={logo} alt="Logo" className="w-12 h-12" />
-        <h1 className="text-xl font-bold  ml-3">DRDO Portal</h1>
+        <h1 className="text-xl font-bold ml-3">DRDO - SSPL</h1>
       </div>
 
       <div className="flex gap-4 items-center">
         <button
           onClick={() => navigate('/home')}
-          className=" font-medium hover:underline"
+          className="font-medium hover:underline"
         >
           Home
         </button>
         <button
           onClick={() => navigate('/form')}
-          className=" font-medium hover:underline"
+          className="font-medium hover:underline"
         >
           Add Data
         </button>
         <button
           onClick={() => navigate('/dashboard')}
-          className=" font-medium hover:underline"
+          className="font-medium hover:underline"
         >
           View Data
         </button>

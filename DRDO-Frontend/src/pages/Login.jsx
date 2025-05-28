@@ -15,7 +15,7 @@ const Login = () => {
       const response = await fetch('https://drdo-backend-production.up.railway.app/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: username, password }),
+        body: JSON.stringify({ username, password }),
       });
 
       const data = await response.json();
@@ -25,7 +25,6 @@ const Login = () => {
         console.log('Login successful, token:', data.token);
         setError('');
         navigate('/home');
-        
       } else {
         setError(data.error || 'Login failed');
       }
@@ -37,8 +36,9 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#056CA5] to-[#002B62] px-4">
       <div className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-sm text-center">
-        <img src={logo} alt="Logo" className="w-24 h-24 mx-auto mb-4" />
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Log In</h2>
+        <img src={logo} alt="DRDO Logo" className="w-24 h-24 mx-auto mb-4" />
+        <h2 className="text-2xl font-bold text-gray-800 mb-2">Grant-In-Aid Portal</h2>
+        <p className="text-sm text-gray-500 mb-6">Log in to manage Conferences / Seminars data</p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
