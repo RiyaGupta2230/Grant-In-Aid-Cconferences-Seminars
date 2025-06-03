@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import logo from '../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/logo.png';
+import {BASE_URL} from "../Config"
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -12,7 +13,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://drdo-backend-production.up.railway.app/api/login', {
+      const response = await fetch(`${BASE_URL}/api/drdotwo/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
@@ -22,8 +23,6 @@ const Login = () => {
 
       if (response.ok) {
         localStorage.setItem('token', data.token);
-        console.log('Login successful, token:', data.token);
-        setError('');
         navigate('/home');
       } else {
         setError(data.error || 'Login failed');
@@ -46,7 +45,7 @@ const Login = () => {
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#046BA4]"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md"
             required
           />
           <input
@@ -54,13 +53,10 @@ const Login = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#046BA4]"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md"
             required
           />
-          <button
-            type="submit"
-            className="bg-[#046BA4] text-white font-medium py-2 rounded-full hover:bg-[#002B62] transition duration-300"
-          >
+          <button type="submit" className="bg-[#046BA4] text-white font-medium py-2 rounded-full hover:bg-[#002B62] transition duration-300">
             Log In
           </button>
           {error && <p className="text-red-600 mt-2">{error}</p>}
