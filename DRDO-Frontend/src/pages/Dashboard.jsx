@@ -129,7 +129,9 @@ const Dashboard = () => {
             <input
               type="date"
               value={dateRange.start}
-              onChange={(e) => setDateRange({ ...dateRange, start: e.target.value })}
+              onChange={(e) =>
+                setDateRange({ ...dateRange, start: e.target.value })
+              }
               className="border rounded px-2 py-1"
             />
           </div>
@@ -138,7 +140,9 @@ const Dashboard = () => {
             <input
               type="date"
               value={dateRange.end}
-              onChange={(e) => setDateRange({ ...dateRange, end: e.target.value })}
+              onChange={(e) =>
+                setDateRange({ ...dateRange, end: e.target.value })
+              }
               className="border rounded px-2 py-1"
             />
           </div>
@@ -159,12 +163,15 @@ const Dashboard = () => {
         </div>
 
         {/* Table */}
-        <table className="w-full border text-sm bg-white shadow table-auto min-w-[1100px]">
+        <table className="w-full border text-sm bg-white shadow table-auto min-w-[1300px]">
           <thead className="bg-[#02447C] text-white">
             <tr>
-              <th className="border p-2">#</th>
+              <th className="border p-2">S.No.</th>
+              <th className="border p-2">Date Opened</th>
+              <th className="border p-2">Dated</th>
               <th className="border p-2">Letter No</th>
               <th className="border p-2">Subject</th>
+              <th className="border p-2">Amount Sanctioned (in Rs.)</th>
               <th className="border p-2">Status</th>
               <th className="border p-2">Comments</th>
               <th className="border p-2">Actions</th>
@@ -174,12 +181,17 @@ const Dashboard = () => {
             {(isFiltered ? filteredRecords : records).map((rec, idx) => (
               <tr key={rec.id} className="hover:bg-blue-50">
                 <td className="border p-2">{idx + 1}</td>
+                <td className="border p-2">{rec.dateOfOpened || "N/A"}</td>
+                <td className="border p-2">{rec.dated || "N/A"}</td>
                 <td className="border p-2">{rec.letterNo}</td>
                 <td className="border p-2">{rec.subject}</td>
+                <td className="border p-2">{rec.amountSanctioned || "N/A"}</td>
                 <td className="border p-2">
                   <select
                     value={rec.status}
-                    onChange={(e) => handleStatusChange(rec.id, e.target.value)}
+                    onChange={(e) =>
+                      handleStatusChange(rec.id, e.target.value)
+                    }
                     className="border rounded px-2 py-1 w-full"
                   >
                     <option value="In Process">In Process</option>
@@ -256,8 +268,12 @@ const Dashboard = () => {
           {selectedRecord && (
             <div className="space-y-4">
               <div className="text-center mb-6">
-                <h1 className="text-2xl font-bold text-[#02447C]">RECORD REPORT</h1>
-                <h2 className="text-xl font-semibold">{selectedRecord.subject}</h2>
+                <h1 className="text-2xl font-bold text-[#02447C]">
+                  RECORD REPORT
+                </h1>
+                <h2 className="text-xl font-semibold">
+                  {selectedRecord.subject}
+                </h2>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -273,8 +289,12 @@ const Dashboard = () => {
 
               {selectedRecord.comments && (
                 <div className="mt-6">
-                  <h3 className="text-lg font-semibold border-b pb-1">Comments:</h3>
-                  <p className="whitespace-pre-line mt-2">{selectedRecord.comments}</p>
+                  <h3 className="text-lg font-semibold border-b pb-1">
+                    Comments:
+                  </h3>
+                  <p className="whitespace-pre-line mt-2">
+                    {selectedRecord.comments}
+                  </p>
                 </div>
               )}
 
