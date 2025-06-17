@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
-import { BASE_URL } from '../Config'
+import { BASE_URL } from '../Config';
 
 const DataEntryForm = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +15,8 @@ const DataEntryForm = () => {
     amountSanctioned: '',
   });
 
-  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,21 +52,58 @@ const DataEntryForm = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="p-8 max-w-3xl mx-auto flex-grow">
-        <h2 className="text-2xl font-semibold mb-6 text-[#02447C]">Enter Grant-In-Aid Conference/Seminar Record</h2>
+        <h2 className="text-2xl font-semibold mb-6 text-[#02447C]">
+          Enter Grant-In-Aid Conference/Seminar Record
+        </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <input type="date" name="dateOpened" value={formData.dateOpened} onChange={handleChange} className="border p-2 w-full" />
-          <input type="text" name="subject" value={formData.subject} onChange={handleChange} className="border p-2 w-full" placeholder="Subject" />
-          <input type="text" name="letterNo" value={formData.letterNo} onChange={handleChange} className="border p-2 w-full" placeholder="Letter No." />
-          <input type="date" name="dated" value={formData.dated} onChange={handleChange} className="border p-2 w-full" />
-          <input type="text" name="commentsBy" value={formData.commentsBy} onChange={handleChange} className="border p-2 w-full" placeholder="Comments Given By" />
-          <textarea name="comments" value={formData.comments} onChange={handleChange} className="border p-2 w-full resize-none" rows={4} placeholder="Comments" />
-          <select name="status" value={formData.status} onChange={handleChange} className="border p-2 w-full">
-            <option value="">Select Status</option>
-            <option value="Recommended">Recommended</option>
-            <option value="Non-recommended">Non-recommended</option>
-          </select>
-          <input type="number" name="amountSanctioned" value={formData.amountSanctioned} onChange={handleChange} className="border p-2 w-full" placeholder="Amount Sanctioned (in Rs.)" />
-          <button type="submit" className="bg-[#02447C] text-white px-4 py-2 rounded hover:bg-[#035a8c]">Submit</button>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Date Opened</label>
+            <input type="date" name="dateOpened" value={formData.dateOpened} onChange={handleChange} className="border p-2 w-full" />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Subject</label>
+            <input type="text" name="subject" value={formData.subject} onChange={handleChange} className="border p-2 w-full" placeholder="Subject" />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Letter No.</label>
+            <input type="text" name="letterNo" value={formData.letterNo} onChange={handleChange} className="border p-2 w-full" placeholder="Letter No." />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Dated</label>
+            <input type="date" name="dated" value={formData.dated} onChange={handleChange} className="border p-2 w-full" />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Comments Given By</label>
+            <input type="text" name="commentsBy" value={formData.commentsBy} onChange={handleChange} className="border p-2 w-full" placeholder="Comments Given By" />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Comments</label>
+            <textarea name="comments" value={formData.comments} onChange={handleChange} className="border p-2 w-full resize-none" rows={4} placeholder="Comments" />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Status</label>
+            <select name="status" value={formData.status} onChange={handleChange} className="border p-2 w-full">
+              <option value="">Select Status</option>
+              <option value="Recommended">Recommended</option>
+              <option value="Non-recommended">Non-recommended</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Amount Sanctioned (in Rs.)</label>
+            <input type="number" name="amountSanctioned" value={formData.amountSanctioned} onChange={handleChange} className="border p-2 w-full" placeholder="Amount Sanctioned" />
+          </div>
+
+          <button type="submit" className="bg-[#02447C] text-white px-4 py-2 rounded hover:bg-[#035a8c]">
+            Submit
+          </button>
         </form>
       </main>
       <Footer />
